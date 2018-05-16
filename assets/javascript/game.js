@@ -1,9 +1,5 @@
 // pick random letter for guessing game to start
-    var letterArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    var wins = 0; //wins
-    var losses = 0; //losses
-    var guesses = 10; //guesses left
-    var userGuesses= []; //empty array to push userinput
+    
 
 
 // Your guesses so far : display letters input from user
@@ -31,6 +27,14 @@
             //then you lose
             // losses l++
 
+
+var letterArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    var wins = 0; //wins
+    var losses = 0; //losses
+    var guesses = 10; //guesses left
+    var userGuesses= []; //empty array to push userinput
+
+    
 document.onkeyup = function(event) {
     var key = event.key
 
