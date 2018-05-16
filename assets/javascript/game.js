@@ -56,7 +56,6 @@ document.onkeyup = function(event) {
     
     }
 
-    return 
 
      win = document.getElementById("wins");
      win.innerHTML = wins;
