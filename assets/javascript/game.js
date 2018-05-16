@@ -1,10 +1,9 @@
 // pick random letter for guessing game to start
-    var letterArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q','r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    var letterArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
     var wins = 0; //wins
     var losses = 0; //losses
     var guesses = 10; //guesses left
-    // var randomLetter = letterArray[Math.floor(Math.random()*letterAray.length)];
-    var userGuesses= [];
+    var userGuesses= []; //empty array to push userinput
 
 
 // Your guesses so far : display letters input from user
@@ -32,26 +31,27 @@
             //then you lose
             // losses l++
 
-
-
 document.onkeyup = function(event) {
+    var key = event.key
 
-    var userGuess = document.getElementById('userGuesses');
-    userGuess.innerHTML = event.key;
-    var player = userGuess.textContent;
+    var playerGuess = key;
+        userGuesses.push(playerGuess);
 
     var computerGuess = letterArray[Math.floor(Math.random()*letterArray.length)];
 
+    
 
-    if (computerGuess === player) {
+    if (computerGuess === playerGuess) {
         wins++;
         guesses = 10;
+        userGuesses = [];
         alert('You\'re psychic!');
     } else if (guesses === 0) {
         losses ++;
         guesses = 10;
+        userGuesses = [];
         alert('You lose!');
-    } else if (computerGuess !== player) {
+    } else if (computerGuess !== playerGuess) {
         guesses--;
     
     }
@@ -59,14 +59,14 @@ document.onkeyup = function(event) {
 
      win = document.getElementById("wins");
      win.innerHTML = wins;
+
      lose= document.getElementById("losses");
      lose.innerHTML = losses;
-     guess = document.getElementById("guesses");
+
+     guess = document.getElementById("guessLeft");
      guess.innerHTML = guesses;
-     
+    
+     guessedLetters = document.getElementById('guesses');
+     guessedLetters.innerHTML = userGuesses.join(', ');
 };
 
-console.log(wins)
-console.log(losses)
-console.log(guesses);
-console.log(userGuesses);
