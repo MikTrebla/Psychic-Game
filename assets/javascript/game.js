@@ -1,76 +1,56 @@
-// pick random letter for guessing game to start
-    
-
-
-// Your guesses so far : display letters input from user
-    // if (input)
-        // add to new array guesses 
-        // display : input + ', '
-
-
-// Losses  l=0; l++ on each loss
-    // if (guesses left === 0) 
-        // then l++
-        //refresh game
-
-//Wins  w =0; w++ on each win
-    // if (input === randomLetter && guesses left >0)
-        //then w++
-        //refresh game
-
-
-
-//Guesses left  g = 10; g-- on each attempt
-    // if (input !== randomLetter)
-        // then g--
-       //if g = 0
-            //then you lose
-            // losses l++
-
-
 var letterArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
     var wins = 0; //wins
     var losses = 0; //losses
-    var guesses = 10; //guesses left
+    var guesses = 9; //guesses left
     var userGuesses= []; //empty array to push userinput
 
+
+    //need to create a function(?) to initialize random letter on game start up...
+        // var computerGuess() {
+        //     Math.floor(Math.random()*letterArray.length)};
+    //need to take that function and put it into my if statements to reset letter on win/lose condition?
+        //current game is resetting random letter on each key stroke user inputs
     
+
+
 document.onkeyup = function(event) {
     var key = event.key
+
+    var computerGuess = letterArray[Math.floor(Math.random()*letterArray.length)];
 
     var playerGuess = key;
         userGuesses.push(playerGuess);
 
-    var computerGuess = letterArray[Math.floor(Math.random()*letterArray.length)];
+    var win = document.getElementById("wins");
+        win.innerHTML = wins;
 
+    var lose = document.getElementById("losses");
+        lose.innerHTML = losses;
+
+    var guess = document.getElementById("guessLeft");
+        guess.innerHTML = guesses;
     
+    var guessedLetters = document.getElementById('guesses');
+        guessedLetters.innerHTML = userGuesses.join(', ');
+    
+  
 
     if (computerGuess === playerGuess) {
         wins++;
         guesses = 10;
-        userGuesses = [];
         alert('You\'re psychic!');
+        userGuesses = [];
+        //reset();
     } else if (guesses === 0) {
         losses ++;
         guesses = 10;
-        userGuesses = [];
         alert('You lose!');
+        userGuesses = [];
+        //reset();
     } else if (computerGuess !== playerGuess) {
         guesses--;
-    
     }
-
-
-     win = document.getElementById("wins");
-     win.innerHTML = wins;
-
-     lose= document.getElementById("losses");
-     lose.innerHTML = losses;
-
-     guess = document.getElementById("guessLeft");
-     guess.innerHTML = guesses;
-    
-     guessedLetters = document.getElementById('guesses');
-     guessedLetters.innerHTML = userGuesses.join(', ');
+    console.log(computerGuess);
 };
+
 
